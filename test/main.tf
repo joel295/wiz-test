@@ -1,11 +1,23 @@
-resource "wiz_report" "cloud_resource_report" {
-  name               = "test_test"
-  report_type        = "CLOUD_RESOURCE"
-  run_start_at       = "2024-08-23T11:00:00+01:00"
-  run_interval_hours = 24
-  cloud_resource_params {
-    include_cloud_native_json = true
-    entity_type               = ["VIRTUAL_MACHINE"]
-    cloud_platform            = ["AWS"]
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.16"
+    }
+  }
+
+  required_version = ">= 1.2.0"
+}
+
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_instance" "app_server" {
+  ami           = "ami-04a81a99f5ec58529"
+  instance_type = "t2.micro"
+  count         = 1
+  tags = {
+    Name  = test2
   }
 }
