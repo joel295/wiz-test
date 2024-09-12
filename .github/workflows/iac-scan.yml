@@ -6,7 +6,7 @@ jobs:
     name: 'Wiz-cli IaC Scan'
     runs-on: ubuntu-latest
     env:
-      SCAN_PATH1: "." # Set the relative path in the repo to scan
+      SCAN_PATH1: "./test/main.tf" # Set the relative path in the repo to scan
       SCAN_PATH2: "./test/some_code.txt"
       POLICY1: "Default IaC policy"
       POLICY2: "Default secrets policy"
